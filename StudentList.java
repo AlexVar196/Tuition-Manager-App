@@ -1,4 +1,3 @@
-
 /**
  *  The container StudentList class which holds an array of
  *  students that has methods add, remove,
@@ -138,5 +137,19 @@ public class StudentList {
         }
 
         System.out.println(">--- end of the list ---<");
+    }
+
+    public String toString() {
+        String theList = "";
+        theList += "The Students are:\n--------------------------------\n";
+        for (int i = 0; i < studentList.length; i++) {
+            if (studentList[i] == null) {
+            } else {
+                theList += (i + 1) + ". " + studentList[i].toString() + "\n-----------------------------------\n";
+            }
+        }
+
+        theList += ">--- end of the list ---<";
+        return theList;
     }
 }
