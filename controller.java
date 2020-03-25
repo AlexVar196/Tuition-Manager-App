@@ -1,5 +1,4 @@
 import javafx.fxml.FXML;
-//import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
@@ -43,24 +42,40 @@ public class controller {
         }
         else{
             funds.setEditable(false);
+            funds.clear();
         }
     }
-    //When certain radio buttons are selected disable other
+    //When certain radio buttons are selected disable others
     public void instateSelect(){
         funding.setDisable(false);
+        funds.clear();
+
         tristate.setDisable(true);
+        tristate.setSelected(false);
+
         exchange.setDisable(true);
+        exchange.setSelected(false);
     }
     public void outstateSelect(){
         funding.setDisable(true);
+        funding.setSelected(false);
         funds.setEditable(false);
+        funds.clear();
+
         tristate.setDisable(false);
+
         exchange.setDisable(true);
+        exchange.setSelected(false);
     }
     public void internationalSelect(){
         funding.setDisable(true);
+        funding.setSelected(false);
         funds.setEditable(false);
+        funds.clear();
+
         tristate.setDisable(true);
+        tristate.setSelected(false);
+
         exchange.setDisable(false);
     }
     public void add(){
@@ -107,7 +122,7 @@ public class controller {
         }
 
         if (international.isSelected()) {
-            if (tristate.isSelected()) {
+            if (exchange.isSelected()) {
                 isExchange = true;
                 International student = new International(fName, lName, noc, isExchange);
                 if (studentList.contains(student)) {  // checks if student already exists.
@@ -115,7 +130,7 @@ public class controller {
                 } else {
                     studentList.add(student);   //adds student to the next available index in array.
                 }
-            } else if (!tristate.isSelected()) {
+            } else if (!exchange.isSelected()) {
                 isExchange = false;
                 International student = new International(fName, lName, noc, isExchange);
                 if (studentList.contains(student)) {  // checks if student already exists.
@@ -146,16 +161,7 @@ public class controller {
         if (studentList.isEmpty()) {
             theTextArea.appendText("We have 0 students!\n");
         } else {
-            theTextArea.appendText("The Students are:\n-----------------------------------");
-            /*for (int i = 0; i < studentList.length; i++) {
-                if (studentList[i] == null) {
-                } else {
-                    System.out.println((i + 1) + ". " + studentList[i].toString() + "\n-----------------------------------");
-                }
-            }*/
-
-            theTextArea.appendText(">--- end of the list ---<");
-        }
+            theTextArea.appendText(studentList.toString());
+    }
     }
 }
-
