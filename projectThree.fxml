@@ -40,7 +40,7 @@
                            </toggleGroup></RadioButton>
                         <RadioButton id="outstate" fx:id="outstate" mnemonicParsing="false" onAction="#outstateSelect" text="Outstate" toggleGroup="$radioToggleGroup" GridPane.rowIndex="1" />
                         <RadioButton id="international" fx:id="international" mnemonicParsing="false" onAction="#internationalSelect" text="International" toggleGroup="$radioToggleGroup" GridPane.rowIndex="2" />
-                        <CheckBox id="funding" fx:id="funding" mnemonicParsing="false" onAction="#check" text="Funding" GridPane.columnIndex="1" />
+                        <CheckBox id="funding" fx:id="funding" mnemonicParsing="false" onAction="#enableFundsInput" text="Funding" GridPane.columnIndex="1" />
                         <CheckBox id="tristate" fx:id="tristate" mnemonicParsing="false" text="Tri-state Student" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <CheckBox id="exchange" fx:id="exchange" mnemonicParsing="false" text="Exchange Student" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField id="funds" fx:id="funds" prefHeight="25.0" prefWidth="114.0" editable="false" GridPane.columnIndex="2" />

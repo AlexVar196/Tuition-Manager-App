@@ -7,10 +7,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.CheckBox;
 
 /**
- * The controller class acts as a GUI in order to handle user events.
- * This class is running until the program is terminated. This class
- * allows us to add and remove students as well as display all current
- * students with their calculated tuition.
+ * The controller class acts as a GUI in order to handle user events. This class
+ * is running until the program is terminated. This class allows us to add and
+ * remove students as well as display all current students with their calculated
+ * tuition.
  *
  * @author Michael Flores mof15
  * @author Alex Varshavsky av653
@@ -49,7 +49,7 @@ public class controller {
     /**
      * When the funding checkbox is selected allows editing the funds.
      */
-    public void check() {
+    public void enableFundsInput() {
         if (funding.isSelected()) {
             funds.setEditable(true);
         } else {
