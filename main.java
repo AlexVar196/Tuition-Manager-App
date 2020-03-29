@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 
 /**
- * main class contains the main method
+ * The main class contains the main method
  * which runs the entire application.
  *
  * @author Michael Flores mof15
