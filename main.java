@@ -5,10 +5,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 /**
- * The main class contains the main method
- * which runs the entire application.
+ * The main class contains the main method which runs the entire application.
+ * The program runs both in terminal and the GUI version. To run terminal
+ * version, the main method is in “prog2” file. The GUI version we run is using
+ * javaFX 8.0
  *
  * @author Michael Flores mof15
  * @author Alex Varshavsky av653
