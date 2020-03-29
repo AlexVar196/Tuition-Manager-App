@@ -5,16 +5,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+/**
+ * main class contains the main method
+ * which runs the entire application.
+ *
+ * @author Michael Flores mof15
+ * @author Alex Varshavsky av653
+ */
 public class main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
         //Load the FXML file.
         Parent root = FXMLLoader.load(getClass().getResource("projectThree.fxml"));
-
-        primaryStage.setTitle("Program 3 - Tuition Manager");
-        primaryStage.setScene(new Scene(root, 600, 525));
-        primaryStage.show();
+        primaryStage.setTitle("Program 3 - Tuition Manager"); // naming window
+        primaryStage.setScene(new Scene(root, 600, 525)); // setting window size
+        primaryStage.show();  // presenting the stage
 
     }
 

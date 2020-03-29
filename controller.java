@@ -1,14 +1,24 @@
 
+import java.text.ParseException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.CheckBox;
 
+/**
+ * The controller class acts as a GUI. This class is running until the program
+ * is terminated. This class allows us to add and remove students as well as
+ * display all current students with their calculated tuition.
+ *
+ * @author Michael Flores mof15
+ * @author Alex Varshavsky av653
+ */
 public class controller {
 
     StudentList studentList = new StudentList();
 
+    //all the FXML components to be displayed
     @FXML
     private TextField firstName;
     @FXML
@@ -35,7 +45,9 @@ public class controller {
     @FXML
     private TextArea theTextArea;
 
-    //When the funding checkbox is selected
+    /**
+     * When the funding checkbox is selected allows editing the funds
+     */
     public void check() {
         if (funding.isSelected()) {
             funds.setEditable(true);
@@ -45,7 +57,9 @@ public class controller {
         }
     }
 
-    //When certain radio buttons are selected disable others
+    /**
+     * When instate radio buttons are selected disable the rest
+     */
     public void instateSelect() {
         funding.setDisable(false);
         funds.clear();
@@ -57,6 +71,9 @@ public class controller {
         exchange.setSelected(false);
     }
 
+    /**
+     * When outstate radio buttons are selected disable the rest
+     */
     public void outstateSelect() {
         funding.setDisable(true);
         funding.setSelected(false);
@@ -69,6 +86,9 @@ public class controller {
         exchange.setSelected(false);
     }
 
+    /**
+     * When international radio buttons are selected disable the rest
+     */
     public void internationalSelect() {
         funding.setDisable(true);
         funding.setSelected(false);
@@ -81,8 +101,14 @@ public class controller {
         exchange.setDisable(false);
     }
 
+    /**
+     * \
+     * The add function adds a student to the student list after checking that
+     * all fields were correctly entered and that the student doesn't exist in
+     * the list already.
+     */
     public void add() {
-        //Get input from user
+        //Get input from user and check if its not empty
         if (firstName.getText().trim().equals("")) {
             theTextArea.appendText("You must enter First Name!\n");
         } else if (lastName.getText().trim().equals("")) {
@@ -95,14 +121,14 @@ public class controller {
 
             String fName = firstName.getText();
             String lName = lastName.getText();
-            int noc = checkParse(numberOfCredits.getText());
+            int noc = checkParse(numberOfCredits.getText()); // checks if input doesn't contain chars.
             if (noc != -1) {
                 boolean isTriState;
                 boolean isExchange;
 
                 if (instate.isSelected()) {
                     if (funding.isSelected()) {
-                        if (funds.getText().trim().equals("")) {
+                        if (funds.getText().trim().equals("")) { // checks if funding was selected but no value was entered
                             theTextArea.appendText("You selected funds, so you must enter Funds value!\n");
                         } else {
 
@@ -211,8 +237,13 @@ public class controller {
         }
     }
 
+    /**
+     * The remove method removes a student from the student list, unless the
+     * student is not an actual member. If member exists, it removes him and the
+     * last item in the array replaces it's position.
+     */
     public void remove() {
-
+        //Get input from user and check if its not empty
         if (firstName.getText().trim().equals("")) {
             theTextArea.appendText("You must enter First Name!\n");
         } else if (lastName.getText().trim().equals("")) {
@@ -230,6 +261,10 @@ public class controller {
         }
     }
 
+    /**
+     * The print method outputs all students in the list. If the team is empty
+     * it displays that it has 0 students.
+     */
     public void print() {
         if (studentList.isEmpty()) {
             theTextArea.appendText("We have 0 students!\n");
@@ -238,11 +273,19 @@ public class controller {
         }
     }
 
-    public int checkParse(String s) {
+    /**
+     * Checks if the string entered is in the correct format to be parsed as an
+     * integer. If it is, returns the parsed int, if not returns -1.
+     *
+     * @param string The string to be checked. Catches NumberFormatException if
+     * string contains chars
+     * @return int => the parsed int, or -1 if not valid.
+     */
+    public int checkParse(String string) {
         try {
-            int num = Integer.parseInt(s);
+            int num = Integer.parseInt(string);
             return num;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return -1;
         }
     }
