@@ -128,11 +128,11 @@ public class StudentList {
      * Prints the students.
      */
     public void print() {
-        System.out.println("The Students are:\n-----------------------------------");
+        System.out.println("The Students are:\n-----------------------------------\n");
         for (int i = 0; i < studentList.length; i++) {
             if (studentList[i] == null) {
             } else {
-                System.out.println((i + 1) + ". " + studentList[i].toString() + "\n-----------------------------------");
+                System.out.println((i + 1) + ". " + studentList[i].toString() + "\n-----------------------------------\n");
             }
         }
 
@@ -149,7 +149,7 @@ public class StudentList {
             }
         }
 
-        theList += ">--- end of the list ---<";
+        theList += ">--- end of the list ---<\n";
         return theList;
     }
 }

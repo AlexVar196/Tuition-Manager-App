@@ -50,7 +50,11 @@ public class TuitionManager {
                     studentType = IN_STATE;
                     credit = Integer.parseInt(string.nextToken());
                     funding = Integer.parseInt(string.nextToken());
-                    add(fname, lname, studentType, credit, funding); // adds student.
+                    if (credit > 0 && funding >= 0) {
+                        add(fname, lname, studentType, credit, funding); // adds student.
+                    } else {
+                        System.out.println("Credit and Funding must be positive!");
+                    }
                     break;
 
                 case 'O':
@@ -59,7 +63,11 @@ public class TuitionManager {
                     studentType = OUT_OF_STATE;
                     credit = Integer.parseInt(string.nextToken());
                     state = string.nextToken().charAt(0);
-                    add(fname, lname, studentType, credit, state);  // adds student.
+                    if (credit > 0) {
+                        add(fname, lname, studentType, credit, state);  // adds student.
+                    } else {
+                        System.out.println("Credit must be positive!");
+                    }
                     break;
 
                 case 'N':
@@ -68,7 +76,11 @@ public class TuitionManager {
                     studentType = INTERNATIONAL;
                     credit = Integer.parseInt(string.nextToken());
                     state = string.nextToken().charAt(0);
-                    add(fname, lname, studentType, credit, state);  // adds student.
+                    if (credit > 0) {
+                        add(fname, lname, studentType, credit, state);  // adds student.
+                    } else {
+                        System.out.println("Credit must be positive!");
+                    }
                     break;
 
                 case 'R':
@@ -101,11 +113,10 @@ public class TuitionManager {
      * @param credit Number of credits taken by student.
      * @param studentType The student type: IN_STATE / OUT_OF_STATE /
      * INTERNATIONAL.
-     * @param funds  The additional data provided. An Integer that
-     * represents funds.
+     * @param funds The additional data provided. An Integer that represents
+     * funds.
      */
     private void add(String firstName, String lastName, int studentType, int credit, int funds) {
-
         if (studentType == IN_STATE) {
             Instate student = new Instate(firstName, lastName, credit, funds);
             if (studentList.contains(student)) {  // checks if student already exists.
@@ -115,8 +126,8 @@ public class TuitionManager {
             }
         }
     }
-    
-        /**
+
+    /**
      * The add method checks for duplication, and then adds the student to the
      * team if it doesn't exist.
      *
@@ -125,10 +136,10 @@ public class TuitionManager {
      * @param credit Number of credits taken by student.
      * @param studentType The student type: IN_STATE / OUT_OF_STATE /
      * INTERNATIONAL.
-     * @param state  a Char representing true/false for
-     * isTriState and isExchange. In a form of 'T' - true and 'F- false that's gonna be parsed later.
+     * @param state a Char representing true/false for isTriState and
+     * isExchange. In a form of 'T' - true and 'F- false that's gonna be parsed
+     * later.
      */
-
     private void add(String firstName, String lastName, int studentType, int credit, char state) {
 
         boolean isTriState;
@@ -173,10 +184,7 @@ public class TuitionManager {
                 } else {
                     studentList.add(student);   //adds student to the next available index in array.
                 }
-            } else {
-                System.out.println("Something went wrong with the input. ");
             }
-
         }
     }
 
