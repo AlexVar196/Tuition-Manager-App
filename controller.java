@@ -7,9 +7,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.CheckBox;
 
 /**
- * The controller class acts as a GUI. This class is running until the program
- * is terminated. This class allows us to add and remove students as well as
- * display all current students with their calculated tuition.
+ * The controller class acts as a GUI in order to handle user events.
+ * This class is running until the program is terminated. This class
+ * allows us to add and remove students as well as display all current
+ * students with their calculated tuition.
  *
  * @author Michael Flores mof15
  * @author Alex Varshavsky av653
@@ -18,7 +19,7 @@ public class controller {
 
     StudentList studentList = new StudentList();
 
-    //all the FXML components to be displayed
+    //All the FXML components to be displayed
     @FXML
     private TextField firstName;
     @FXML
@@ -46,7 +47,7 @@ public class controller {
     private TextArea theTextArea;
 
     /**
-     * When the funding checkbox is selected allows editing the funds
+     * When the funding checkbox is selected allows editing the funds.
      */
     public void check() {
         if (funding.isSelected()) {
@@ -58,7 +59,7 @@ public class controller {
     }
 
     /**
-     * When instate radio buttons are selected disable the rest
+     * When instate radio button is selected disable the rest.
      */
     public void instateSelect() {
         funding.setDisable(false);
@@ -72,7 +73,7 @@ public class controller {
     }
 
     /**
-     * When outstate radio buttons are selected disable the rest
+     * When outstate radio button is selected disable the rest.
      */
     public void outstateSelect() {
         funding.setDisable(true);
@@ -87,7 +88,7 @@ public class controller {
     }
 
     /**
-     * When international radio buttons are selected disable the rest
+     * When international radio button is selected disable the rest.
      */
     public void internationalSelect() {
         funding.setDisable(true);
@@ -102,7 +103,7 @@ public class controller {
     }
 
     /**
-     * \
+     *
      * The add function adds a student to the student list after checking that
      * all fields were correctly entered and that the student doesn't exist in
      * the list already.
@@ -121,8 +122,8 @@ public class controller {
 
             String fName = firstName.getText();
             String lName = lastName.getText();
-            int noc = checkParse(numberOfCredits.getText()); // checks if input doesn't contain chars.
-            if (noc != -1) {
+            int totalCredits = checkParse(numberOfCredits.getText()); // checks if input doesn't contain chars.
+            if (totalCredits != -1) {
                 boolean isTriState;
                 boolean isExchange;
 
@@ -134,15 +135,15 @@ public class controller {
 
                             int fund = checkParse(funds.getText());
                             if (fund != -1) {
-                                if (fund >= 0 && noc > 0) {
-                                    if (noc < 12) {
+                                if (fund >= 0 && totalCredits > 0) {
+                                    if (totalCredits < 12) {
                                         fund = 0;
                                     }
-                                    Instate student = new Instate(fName, lName, noc, fund);
+                                    Instate student = new Instate(fName, lName, totalCredits, fund);
                                     if (studentList.contains(student)) {  // checks if student already exists.
                                         theTextArea.appendText("Student already exists in the database!\n");
                                     } else {
-                                        if (noc < 12) {
+                                        if (totalCredits < 12) {
                                             studentList.add(student);   //adds student to the next available index in array.
                                             theTextArea.appendText("Student added but funds were not applied because student is part time.\n");
                                         } else {
@@ -158,8 +159,8 @@ public class controller {
                         }
                     } else {
                         int fund = 0;
-                        if (noc > 0) {
-                            Instate student = new Instate(fName, lName, noc, fund);
+                        if (totalCredits > 0) {
+                            Instate student = new Instate(fName, lName, totalCredits, fund);
                             if (studentList.contains(student)) {  // checks if student already exists.
                                 theTextArea.appendText("Student already exists in the database!\n");
                             } else {
@@ -175,8 +176,8 @@ public class controller {
                 if (outstate.isSelected()) {
                     if (tristate.isSelected()) {
                         isTriState = true;
-                        if (noc > 0) {
-                            Outstate student = new Outstate(fName, lName, noc, isTriState);
+                        if (totalCredits > 0) {
+                            Outstate student = new Outstate(fName, lName, totalCredits, isTriState);
                             if (studentList.contains(student)) {  // checks if student already exists.
                                 theTextArea.appendText("Student already exists in the database!\n");
                             } else {
@@ -188,8 +189,8 @@ public class controller {
 
                     } else if (!tristate.isSelected()) {
                         isTriState = false;
-                        if (noc > 0) {
-                            Outstate student = new Outstate(fName, lName, noc, isTriState);
+                        if (totalCredits > 0) {
+                            Outstate student = new Outstate(fName, lName, totalCredits, isTriState);
                             if (studentList.contains(student)) {  // checks if student already exists.
                                 theTextArea.appendText("Student already exists in the database!\n");
                             } else {
@@ -204,11 +205,11 @@ public class controller {
                 }
 
                 if (international.isSelected()) {
-                    if (noc > 8) {
+                    if (totalCredits > 8) {
 
                         if (exchange.isSelected()) {
                             isExchange = true;
-                            International student = new International(fName, lName, noc, isExchange);
+                            International student = new International(fName, lName, totalCredits, isExchange);
                             if (studentList.contains(student)) {  // checks if student already exists.
                                 theTextArea.appendText("Student already exists in the database!\n");
                             } else {
@@ -216,7 +217,7 @@ public class controller {
                             }
                         } else if (!exchange.isSelected()) {
                             isExchange = false;
-                            International student = new International(fName, lName, noc, isExchange);
+                            International student = new International(fName, lName, totalCredits, isExchange);
                             if (studentList.contains(student)) {  // checks if student already exists.
                                 theTextArea.appendText("Student already exists in the database!\n");
                             } else {
@@ -225,10 +226,10 @@ public class controller {
                         } else {
                             theTextArea.appendText("Something went wrong with the input.\n");
                         }
-                    } else if (noc > 0) {
+                    } else if (totalCredits > 0) {
                         theTextArea.appendText("International students must take at least 8 credits.\n");
                     } else {
-                        theTextArea.appendText("Number of credits must be a positive number!");
+                        theTextArea.appendText("Number of credits must be a positive number!\n");
                     }
                 }
             } else {
